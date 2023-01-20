@@ -12,11 +12,9 @@ API_BASE_URL = 'https://www.ifixit.com/api/2.0'
 def search(term, filter_param='guide'):
   response = req.get('https://www.ifixit.com/api/2.0/search/{}?filter={}'.format(term, filter_param))
   data = response.json()
-  #print(data)
 
   #find out the number of results
   total_num = data['totalResults']
-  #total_num = 20
 
   #search result data will be appended to this list
   data_list = []
@@ -35,7 +33,6 @@ def search(term, filter_param='guide'):
   with open('test.json', 'w') as fout:
     json.dump(data_list , fout)
 
-#search()
 
 def get_guides():
   # open list of search results
@@ -57,15 +54,10 @@ def get_guides():
   with open('raw_data_repairability.json', 'w') as fout:
     json.dump(raw_data , fout)
 
-
-#get_guides()
-
 def filterdata(file = 'raw_data_repairability.json'):
   # open file with list of guides/teardowns
   with open(file) as json_file:
     devices = json.load(json_file)
-
-  #print(len(devices))
 
   # define list where the dicts will be appended to as well as a list to save the guides where no score is found
   listOfGuides = []
@@ -139,7 +131,6 @@ def filterdata(file = 'raw_data_repairability.json'):
         singularGuides['neutralArgsNum'] = len(neutralArgs)
         singularGuides['negativeArgs'] = negativeArgs
         singularGuides['negativeArgsNum'] = len(negativeArgs)
-        #print(i['title'], ' '.join(finalThoughts))
 
         # extract repairability score
         try:
@@ -235,20 +226,3 @@ def view_statistics(url):
     return statistics
   else:
     print('Error scraping the page: {}'.format(page.status_code))
-
-#filterdata()
-
-
-
-#with open('filtered_data.json') as json_file:
-#  devices = json.load(json_file)
-  
-#key_title = (1 for k in devices if k.get('title'))
-#print(len(devices))
-#for i in devices:
-#    print(i['title'])
-
-#df = pd.read_json('filtered_data.json')
-#df = df.sort_values(by = 'createdDate')
-#subdf = df[['title', 'createdDate', 'stepsLength', 'toolsAmt']]
-#print(subdf.head())
