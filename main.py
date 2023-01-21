@@ -9,7 +9,7 @@ from bs4 import BeautifulSoup
 # Set API URL
 API_BASE_URL = 'https://www.ifixit.com/api/2.0'
 
-def search(term, filter_param='guide'):
+def search_guides(term='repairability', filter_param='guide'):
   response = req.get('https://www.ifixit.com/api/2.0/search/{}?filter={}'.format(term, filter_param))
   data = response.json()
 
@@ -54,7 +54,7 @@ def get_guides():
   with open('raw_data_repairability.json', 'w') as fout:
     json.dump(raw_data , fout)
 
-def filterdata(file = 'raw_data_repairability.json'):
+def filter_data(file = 'raw_data_repairability.json'):
   # open file with list of guides/teardowns
   with open(file) as json_file:
     devices = json.load(json_file)
