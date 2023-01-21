@@ -1,2 +1,1 @@
-# repairability_scores
-Repairability Scores
+Code used to get the raw data for [the repairability score exploration blog post](https://manuelhaeussermann.de/Repairability-Scores-Analysis/). Bases heavily on xiongchiamiov's [repo](https://github.com/xiongchiamiov/ifixit-repairability-scores) and makes use of the iFixit API 2.0.
